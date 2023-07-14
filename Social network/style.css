@@ -1,0 +1,273 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.height{
+    height: 100%;
+}
+.error{
+    color: red;
+}
+
+.success{
+    color: green;
+}
+.bold{
+    font-weight: 700;
+}
+.line-color{
+    color: rgb(15, 15, 156);
+    text-decoration: none;
+}
+table{
+    border: 1px solid black;
+    margin: 10px;
+}
+
+
+/* main page start */
+.back-index{
+    background: url(img/picture_1.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text-index{
+    background: radial-gradient(circle, rgba(174,218,238,1) 0%, rgba(0,0,0,1) 100%);
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+.text-index p{
+    font-size: 1.5rem;
+    
+}
+/* main page end */
+
+/* register page start */
+.back-register{
+    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(135,184,242,1) 100%);
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.register_h{
+    font-size: 1.7rem;
+    color: rgb(11, 13, 13);
+    font-weight: 700;
+}
+.register{
+    height: 40vh;
+    width: 60vw;
+    width: 30rem;
+    background: url(img/picture_3.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-top: 20px;
+}
+.register img{
+    width: 30rem;
+    height: 10rem;
+}
+.register form{
+    color: rgb(9, 9, 9);
+}
+.register form div{
+    margin: 15px 0;
+    position: relative;
+    left: 0;
+}
+.register form div label{
+    font-size: 1.2rem;
+    margin-right: 10px;
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+}
+.register form div input{
+    width: 10rem;
+}
+.submit{
+    width: 10rem;
+    height: 2rem;
+    margin-bottom: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 700;
+}
+.submit:hover{
+    background-color: darkblue;
+    color: white;
+    font-weight: 700;
+}
+/* register page end */
+
+/* login page start */
+.login_header{
+    text-align: center;
+    background: linear-gradient(180deg, rgba(184,184,184,1) 0%, rgba(35, 64, 230, 0.883) 100%);
+    margin-bottom: -10px;
+}
+.login h1{
+    font-size: 1.8rem;
+    color: rgb(11, 13, 13);
+    font-weight: 700;
+}
+.back-login{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(135,184,242,1) 100%);
+}
+.login{
+    margin-top: 15px;
+    height: 70vh;
+    width: 60vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url(img/picture_2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 15%;
+    box-shadow: 10px 5px 5px rgba(251, 250, 250, 0.2);
+}
+.picture-login img{
+    height: 100%;
+}
+.login .card{
+    background: linear-gradient(0deg, rgba(184,184,184,1) 0%, rgba(130, 145, 236, 0.883) 100%);
+}
+.login form div{
+    margin: 10px;
+}
+.login form label{
+    font-size: 1.2rem;
+    margin-right: 10px;
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+}
+/*login end*/
+
+/* profile start */
+.back-profile{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    text-align: center;
+    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(135,184,242,1) 100%);
+}
+.form-profile{
+    background: url(img/picture_9.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 10%;
+    margin-top: 15px;
+    box-shadow: 3px 3px 6px 6px rgb(255, 253, 253);
+}
+.form-profile h1{
+    padding: 20px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.form-profile .row{
+    margin: 20px 0;
+}
+.form-profile label{
+    font-size: 1.4rem;
+    margin-right: 10px;
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+}
+.form-profile .name-profile input{
+   width: 10rem;
+   height: 2rem;
+}
+.radio-profile{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.form-profile .radio-profile input{
+    margin: 0 5px;
+}
+.form-profile .submit{
+    margin-top: 20px;
+}
+/* profile end*/
+
+/* followers start*/
+.back-followers{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    text-align: center;
+    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(135,184,242,1) 100%);
+}
+.back-followers .table-followers{
+    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgb(51, 71, 79) 100%);
+    box-shadow: 5px 5px 5px 5px rgb(255, 253, 253);
+    margin-top: 15px;
+}
+.back-followers h1{
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+    color: aliceblue;
+    padding: 5px;
+    
+}
+.table{
+    margin: 30px;
+    width: 90%;
+}
+.table tr{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+}
+.table .action a{
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+    color: rgb(57, 92, 153);
+    margin: 0 8px;
+}
+.table .change-color:visited{
+    color: black;
+}
+.profile-photo{
+    height: 30px;
+}
+/* followers end*/
+
+/* header start */
+header{
+    margin-bottom: -15px;
+    background: rgb(135,129,129);
+    background: linear-gradient(151deg, rgba(135,129,129,1) 0%, rgba(57,87,121,1) 100%);
+}
+header ul{
+    text-align: center;
+}
+header ul li{
+    padding: 20px 0;
+    text-align: center;
+}
+header ul li a{ 
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+/* header end */
+
+
