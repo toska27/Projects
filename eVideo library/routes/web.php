@@ -66,7 +66,7 @@ Route::middleware('auth')->group(function () {
     //definisanje svih sedam ruta za kontrolera
     Route::resource('film', FilmController::class);
 
-    Route::post('/film', [FilmController::class, 'index'])->name('film.index');
+    Route::post('/film/create', [FilmController::class, 'index'])->name('film.index');
 
 
 
