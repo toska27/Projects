@@ -4,15 +4,18 @@
     require_once "validation.php";
 
     $poruka = "";
-    if (isset($_GET["p"]) && $_GET["p"] == "ok"){
-        $poruka = "You have successfully registred, please login to continue";
+    if (isset($_GET["p"]) && $_GET["p"] == "ok"){     // OVAKO KUPIMO PODATKE O POLJU KADA DODJEMO GET METODOM                        
+        $poruka = "You have successfully registred, please login to continue";     // PROVERA DA LI SMO SE REGISTROVALI JER REGISTER GET METODOM SALJE P
     }
 
     $username = "anonymus";
-    if(isset($_SESSION["username"])){ // da li je logovan korisnik
-        $username = $_SESSION["username"];
-        $id = $_SESSION["id"]; // id logovanog korisnika
-        $row = profileExists($id, $conn);
+    if(isset($_SESSION["username"])){                // da li je logovan korisnik
+
+        $username = $_SESSION["username"];     // PRIKUPLJA USERNAME IZ tabele users
+
+        $id = $_SESSION["id"];               // id logovanog korisnika iz tabele users
+
+        $row = profileExists($id, $conn);       // PROVERA DA LI IMA PROFILA AKO IMA PROFIL ROW JE TRUE
         $m = "";
         if($row === false){
             // Logovani korisnik nema profil
@@ -20,7 +23,7 @@
         } else{
             // Logovani korisnik ima profil
             $m = "Edit";
-            $username = $row["first_name"] . " " . $row["last_name"];
+            $username = $row["first_name"] . " " . $row["last_name"];  // OVAKO PRISTUPAMO PODACIMA IZ TABELE PROFIL
         }
                       
     }

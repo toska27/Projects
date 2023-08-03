@@ -1,6 +1,6 @@
 <?php
 
-    function usernameValidation($u, $c){
+    function usernameValidation($u, $c){                // VALIDACIJA USERNAME KOD REGISTROVANJA I LOGINA
 
         $query = "SELECT * FROM `users` WHERE `username` = '$u'";
         $result = $c->query($query);
@@ -18,7 +18,7 @@
         }
     }
 
-    function passwordValidation($u){
+    function passwordValidation($u){              // VALIDACIJA SIFRE
         if(empty($u)){
             return "Password cannot be blank";
         } elseif(preg_match('/\s/', $u)){
@@ -30,7 +30,7 @@
         }
     }
 
-    function nameValidation($n){
+    function nameValidation($n){                // VALIDACIJA IMENA KOD PROFILA
         $n = str_replace(' ', '', $n);
         if (empty($n))
         {
@@ -50,15 +50,15 @@
         }
     }
 
-    function genderValidation($g){
+    function genderValidation($g){                     // VALIDACIJA POLA
         if($g != "m" && $g != "f" && $g != "o"){
             return "Unknown gender";
         } else{
             return "";
         }
     }
-
-    function dobValidation($d){
+ 
+    function dobValidation($d){           // VALIDACIJA GODINE RODJENJA
         if(empty($d)){
             return ""; // ok je da dob bude prazno
         } elseif($d < "1900-01-01"){
@@ -68,7 +68,7 @@
         }
     }
 
-    function imageValidation($image){
+    function imageValidation($image){                       // VALIDACIJA SLIKE
         $allowedExt = array('png', 'jpg', 'jpeg');
         $imgFileType = pathinfo($image, PATHINFO_EXTENSION);
         if(!in_array($imgFileType, $allowedExt)){
@@ -78,7 +78,7 @@
         }
     }
 
-    function contains($image, $default){
+    function contains($image, $default){        // ZA SLIKU
         foreach ($default as $value) {
             if (strpos($image, $value) !== false) {
                 return true;
@@ -87,7 +87,7 @@
         return false;
     }
 
-    function defaultImage($image, $gender){
+    function defaultImage($image, $gender){          // ZA SLIKU
         if ($gender == 'm') {
             $image = 'male.jpg';
         } elseif ($gender == 'f') {
@@ -98,7 +98,7 @@
         return $image;
     }
 
-    function profileExists($id, $conn){
+    function profileExists($id, $conn){                             // FUNKCIJA DA LI POSTOJI PROFIL
         $q = "SELECT * FROM `profiles` WHERE `id_user` = $id";
         $result = $conn->query($q);
         if ($result->num_rows == 0){

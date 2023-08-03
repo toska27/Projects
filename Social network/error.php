@@ -1,7 +1,7 @@
 <?php
 $poruka = "";
-    if($_SERVER["REQUEST_METHOD"]=="GET" && isset($_GET['m'])) {
-        $poruka = $_GET['m'];
+    if($_SERVER["REQUEST_METHOD"]=="GET" && isset($_GET['m'])) {  // AKO NIJE USPELO REGISTROVANJE (AKO NIJE IZVRSEN INSERT U TABELU USERS)
+        $poruka = $_GET['m'];       // KUPIMO PODATKE IZ GET METODE
     }
 ?>
 <!DOCTYPE html>

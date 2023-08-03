@@ -1,5 +1,8 @@
 <?php
 
+
+        // FAJL ZA KREIRANJE NOVIH TABELA
+
     require_once "connection.php";
 
     $sql = " CREATE TABLE IF NOT EXISTS `users`(
@@ -16,7 +19,7 @@
         `gender` CHAR(1),
         `dob` DATE,
         `id_user` INT UNSIGNED NOT NULL UNIQUE,
-        `image` VARCHAR(255),
+        `image` VARCHAR(255)
         PRIMARY KEY(`id`),
         FOREIGN KEY(`id_user`) REFERENCES `users`(`id`)
             ON UPDATE CASCADE ON DELETE NO ACTION   
@@ -33,7 +36,7 @@
             ON UPDATE CASCADE ON DELETE NO ACTION
     ) ENGINE=InnoDB; ";
 
-    if($conn->multi_query($sql)) {
+    if($conn->multi_query($sql)) {          // MULTI_QUERY JER KREIRAMO VISE TABELA
         echo "<p>Tables created successfully</p>";
     } else{
         header("Location: error.php?m=" . $conn->error);

@@ -6,7 +6,7 @@
     $username = "social_network";
     $password = "projekat2";
 
-    $conn = new mysqli($server, $username, $password, $database);
+    $conn = new mysqli($server, $username, $password, $database);  // uspostavljena konekcija sa bazom
     if($conn->connect_error){
         //header("Location: error.php?m=" . $conn->connect_error);
         die("Neuspela konekcija: " . $conn->connect_error);

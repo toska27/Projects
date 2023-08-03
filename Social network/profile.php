@@ -3,62 +3,69 @@
     require_once "validation.php";
     session_start();
     if(!isset($_SESSION['id'])){
-        header("Location: index.php");
+        header("Location: index.php");      // Ne dozvoljavamo pristup ovoj stranici NE LOGOVANIM korisnicima
     }
 
-    $id = $_SESSION['id'];
-    $firstName = $lastName = $dob = $gender = $image =  "";
-    $firstNameError = $lastNameError = $dobError = $genderError = $imageError = "";
+
+    // ID_USER IZ TABELE PROFILES == ID IZ TABELE USERS
+
+    $id = $_SESSION['id'];       // UZIMA ID IZ TABELE USERS
+
+    $firstName = $lastName = $dob = $gender = $image = $bio = "";
+    $firstNameError = $lastNameError = $dobError = $genderError = $imageError = $bioError = "";
 
     $sucMessage = "";
     $errMessage = "";
 
-    $profileRow = profileExists($id, $conn);
+    $profileRow = profileExists($id, $conn);   // DA LI PROFIL POSTOJI (PROVEREVA DA LI JE ID_USER(profiles) = ID(users))
     // $profileRow = false, ako profil ne postoji
     // $profileRow = asocijativni niz, ako profil postoji
 
-    $default = array('male','female','other');
+    $default = array('male','female','other');   // ZA SLIKU
 
-    if($profileRow !== false){
+    if($profileRow !== false){                 // AKO PROFIL POSTOJI, KUPI PODATKE IZ TABELE PROFILES
         $firstName = $profileRow['first_name'];
         $lastName = $profileRow['last_name'];
         $gender = $profileRow['gender'];
         $dob = $profileRow['dob'];
         $image = $profileRow['image'];
+        $bio = $profileRow['bio'];
     }
-
-    /* -- Dodaje slike, ali izbaca i gresku
-    if ($_FILES["image"]["error"] == UPLOAD_ERR_OK) {
-        $temp_name = $_FILES["image"]["tmp_name"];
-        $image_name = $_FILES["image"]["name"];
-        $destination = "images/" . $image_name;
-        
-        if (move_uploaded_file($temp_name, $destination)) {
-            $image = $image;
-        } else {
-            $imageError = "Error uploading image";
-        }
-    }
-    */
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-        $firstName = $conn->real_escape_string($_POST['first_name']); // umesto post ide ovo - $_FILES["image"]["name"]
+        $firstName = $conn->real_escape_string($_POST['first_name']); 
         $lastName = $conn->real_escape_string($_POST['last_name']);
         $gender = $conn->real_escape_string($_POST['gender']);
         $dob = $conn->real_escape_string($_POST['dob']);
+        $bio = $conn->real_escape_string($_POST['bio']);
 
-        if(strlen($conn->real_escape_string($_POST['image'])) > 0)
-        {
-            $image = $conn->real_escape_string($_POST['image']);
-            } elseif(strlen($image) > 0){ 
-                if(!contains($image, $default)){
-                    $image = $image;
-                } else{
-                    $image = defaultImage($image, $gender);
+        if (isset($_FILES['image'])) {
+            $imgName = $_FILES['image']['name'];
+            $imgSize = $_FILES['image']['size'];
+            $tmpName = $_FILES['image']['tmp_name'];
+            $imgError = $_FILES['image']['error'];
+
+            if ($imgError === 0) {
+                if ($imgSize > 1048576) {
+                    $imageError = "Sorry, your file is to large. <br>Maximum image size is 1mb.";
+                } else {
+                    $imgEx = pathinfo($imgName, PATHINFO_EXTENSION);
+                    $imgExLc = strtolower($imgEx);
+    
+                    $allowedExs = array("png", "jpg", "jpeg");
+    
+                    if (in_array($imgExLc, $allowedExs)) {
+                        $imageNewName = uniqid("IMG-", false) . '.' . $imgExLc;
+                        $imgUploadPath = "images/" . $imageNewName;
+                        move_uploaded_file($tmpName, $imgUploadPath);
+                    } else {
+                        $imageError = "Can't upload this type of file.";
+                    }
                 }
-        } else{
-            $image = defaultImage($image, $gender);
+            } else {
+                // header("Location: error.php?m=Upload error.");
+            }
         }
 
         // Vrsimo validaciju polja
@@ -68,23 +75,26 @@
         $dobError = dobValidation($dob);
         $imageError = imageValidation($image);
 
+
+
         // Ako je sve u redu, ubacujemo novi red u tabelu `profiles`
         if($firstNameError == "" && $lastNameError == "" && $genderError == "" && $dobError == "" && $imageError == ""){
 
             $q = "";
-            if($profileRow === false){
+            if($profileRow === false){      // AKO NE POSTOJI PROFIL, UBACIVANJE NOVOG REDA U TABELU PROFILES
 
-                $q = "INSERT INTO `profiles`(`first_name`, `last_name`, `gender`, `dob`, `id_user`, `image`) VALUE 
-                ('$firstName', '$lastName', '$gender', '$dob', $id, '$image');";
+                $q = "INSERT INTO `profiles`(`first_name`, `last_name`, `gender`, `dob`, `id_user`, `image`, `bio`) VALUE 
+                ('$firstName', '$lastName', '$gender', '$dob', $id, '$imageNewName', '$bio');";   
 
-            } else{
+            } else{        // AKO POSTOJI PROFIL, MENJANJE POLJA U REDU U TABELI PROFILES
 
                 $q = "UPDATE `profiles` SET 
                 `first_name` = '$firstName',
                 `last_name` = '$lastName',
                 `gender` = '$gender',
                 `dob` = '$dob',
-                `image` = '$image'
+                `image` = '$imageNewName',
+                `bio` = '$bio'
                 WHERE `id_user` = $id
                 ";
             }  
@@ -121,7 +131,7 @@
     <section class="back-profile">
         <div class="form-profile">
             <h1>Please fill the profile details</h1>
-            <form action="#" method="post"> <!-- enctype="multipart/form-data"  ovo u post-->
+            <form action="#" method="post" enctype="multipart/form-data">
                 <div class="row g-3 justify-content-center">
                     <div class="col-auto">
                         <label for="first_name">First name:</label>
@@ -163,6 +173,15 @@
                     <div class="col-auto name-profile">
                         <input type="file" name="image" id="image" accept="image/*"> <br>
                         <span class="error"><?php echo $imageError ?></span>
+                    </div>
+                </div>
+                <div class="row g-3 justify-content-center">
+                    <div class="col-auto">
+                        <label for="bio">Biography:</label>
+                    </div>
+                    <div class="col-auto name-profile">
+                        <textarea name="bio" id="bio"><?php echo $bio; ?></textarea><br>
+                        <span class="error"><?php echo $bioError ?></span>
                     </div>
                 </div>
                 <div>
