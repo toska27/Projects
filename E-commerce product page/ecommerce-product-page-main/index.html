@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css"> 
+  <title>E-commerce product page</title>
+
+</head>
+<body>
+
+  <header>
+    <div class="row headerMenu">
+
+      <div class="col-2 col-t-12 title">
+        <h1>sneakers</h1>
+      </div>
+
+      <div class="col-4 col-t-10 navbar" id="menu">
+        <div class="row navigator">
+          <a href="#" class="col-2 col-t-2">Collections</a>
+          <a href="#" class="col-2 col-t-2">Men</a>
+          <a href="#" class="col-2 col-t-2">Women</a>
+          <a href="#" class="col-2 col-t-2">About</a>
+          <a href="#" class="col-2 col-t-2">Contact</a>
+        </div>
+      </div>
+
+      <div class="col-6 col-t-2 avatar">
+        <span id="cartNum"></span>
+        <a href="#openModal" class="button" id="cart"><img src="images/icon-cart.svg" alt="cart" class="cart"></a>
+        <img src="images/image-avatar.png" alt="avatar" class="avatarPhoto">
+      </div>
+
+    </div>
+    <div class="modal" id="modal"></div>
+  </header>
+
+
+  <section class="main">
+    <div class="row">
+
+      <div class="photo col-6 col-t-6" id="photo">
+        <img src="images/image-product-1.jpg" alt="image1" id="bigPhoto">
+  
+        <div class="smallImage row">
+          <img src="images/image-product-1-thumbnail.jpg" alt="image-t-1" class="col-2-4 col-t-2-4" id="smallPhoto1" onclick="changePhoto('smallPhoto1')">
+          <img src="images/image-product-2-thumbnail.jpg" alt="image-t-2" class="col-2-4 col-t-2-4" id="smallPhoto2" onclick="changePhoto('smallPhoto2')">
+          <img src="images/image-product-3-thumbnail.jpg" alt="image-t-3" class="col-2-4 col-t-2-4" id="smallPhoto3" onclick="changePhoto('smallPhoto3')">
+          <img src="images/image-product-4-thumbnail.jpg" alt="image-t-4" class="col-2-4 col-t-2-4" id="smallPhoto4" onclick="changePhoto('smallPhoto4')">
+        </div>
+      </div>
+  
+      <div class="about col-6 col-t-6">
+        
+        <h5>SNEAKER COMPANY</h5>
+        <h1>Fall Limited Edition Sneakers</h1>
+        <p>These low-profile snekaers are your perfect casual wear companion. Featuring a durable
+          rubber outer sole, they'll withstand everything the weather can offer.
+        </p>
+        <h2 id="nowPrice">$125.00</h2>
+        <span class="discount">50%</span>
+        <p class="oldPrice">$250.00</p>
+        <div class="buttons row">
+          <div class="counter col-6 col-t-6">
+            <button class="minus" id="minus" onclick="counterMinus()">-</button>
+            <span class="numberCounter" id="numberCounter">0</span>
+            <button class="plus" id="plus" onclick="counterPlus()">+</button>
+          </div>
+          <button class="cart col-6 col-t-6" onclick="cartBtn()"><a href="#">🛒 Add to cart</a></button>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+
+  <script src="main.js"></script>
+</body>
+</html>

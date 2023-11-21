@@ -1,0 +1,76 @@
+header{
+    
+    @media only screen and (min-width: 700px){
+        padding: 30px 80px;
+    }
+
+
+    .headerMenu{
+        padding-bottom: 20px;
+        border-bottom: 1px solid $grayishBlue;
+
+        .title{
+            h1{
+                text-align: start;
+            }
+        }
+
+        #menu{
+            padding-top: 5px;
+            .navigator{
+                a{
+                    color: $darkGrayishBlue;
+                }
+                a:nth-child(-n+5){
+                    margin-right: 2%;
+                }
+                a:nth-child(1){
+                    margin-right: 4%;
+                }
+            }
+            
+        }
+        
+        
+        
+        
+        
+        
+        .avatar{
+            display: flex;
+            justify-content: flex-end;
+            img{
+                text-align: end;
+            }
+            #cartNum{
+                color: $veryDarkBlue;
+                font-size: 700;
+                background-color: $orange;
+                width: 2%;
+                height: 50%;
+                border-radius: 40%;
+                text-align: center;
+            }
+            .avatarPhoto{
+                padding-left: 15px;
+                height: 45px;
+            }
+            .cart{
+                margin-top: 15px;
+                height: 20px;
+            }
+        }
+
+
+        
+
+
+        
+          
+
+
+    }
+    
+    
+
+}

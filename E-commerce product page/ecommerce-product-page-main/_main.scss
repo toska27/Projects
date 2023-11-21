@@ -1,0 +1,119 @@
+.main{
+    @media only screen and (min-width: 700px){
+        padding: 60px 80px;
+    } 
+    z-index: 0;
+    position: relative;
+    .photo{
+        #bigPhoto{
+            border-radius: 5%;
+        }
+    }
+
+    .smallImage{
+        display: inline-block;
+        height: auto;
+        padding-top: 30px;
+        img{
+            border-radius: 10%;
+        }
+        img:nth-child(-n+3){
+            margin-right: 6.66%;
+        }
+        img:hover{
+            cursor: pointer;
+        }
+    }
+
+
+    .about{
+        height: 1000px;
+        padding: 80px 20px 20px 100px;
+        position: relative;
+
+        h5{
+            color: $orange;
+            margin-bottom: 20px;
+            font-size: 80%;
+        }
+        h1{
+            font-size: 245%;
+            margin-bottom: 30px;
+        }
+        p{
+            margin-bottom: 30px;
+            color: $darkGrayishBlue;
+        }
+        h2{
+            font-size: 200%;
+            margin-bottom: 10px;
+            padding-right: 20px;
+            display: inline;
+        }
+        .discount{
+            color: $orange;
+            background-color: $lightOrange;
+            text-align: center;
+            font-size: 110%;
+            border-radius: 30%;
+            width: 4%;
+        }
+        .oldPrice{
+            margin-top: 10px;
+            text-decoration: line-through;
+        }
+        .buttons{
+            position: relative;
+            height: 200px;
+
+            .counter{
+                
+                .numberCounter{
+                    width: 6%;
+                    display: inline-block;
+                    text-align: center;
+                    font-weight: 700;
+                    
+                }
+                .minus{
+                    padding: 5px 0;
+                    width: 20%;
+                    background-color: $lightGrayishBlue;
+                    border-radius: 10%;
+                    color: $orange;
+                    font-weight: 700;
+                    cursor: pointer;
+                }
+                .plus{
+                    padding: 5px 0;
+                    width: 20%;
+                    background-color: $lightGrayishBlue;
+                    border-radius: 10%;
+                    color: $orange;
+                    font-weight: 700;
+                    cursor: pointer;
+                    box-shadow: none !important;
+                }
+            }
+
+            .cart{
+                padding: 5px 0;
+                width: 40%;
+                background-color: $orange;
+                border-radius: 10%;
+                cursor: pointer;
+                box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
+                filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.3));
+
+                a{
+                    color: $white;
+                }
+            }
+            .cart:hover{
+                box-shadow: inset 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+            }
+        }
+        
+    }
+
+}
